@@ -170,6 +170,15 @@ x = x.replace(OLD_LIM, escape("This is a pilot with only 50 human and 50 LLM sol
 lim = shape("TextBox 43").group(0)
 replace_shape("TextBox 43", set_xfrm(lim, off=(re.search(r'<a:off x="(\d+)"', lim).group(1), int(100.4 * CM)), ext=(re.search(r'<a:ext cx="(\d+)"', lim).group(1), int(9.2 * CM))))
 
+# ------------------------------------------------------------------ QR code (optional args: qr.png qr.svg)
+if len(sys.argv) > 4:
+    shutil.copy(sys.argv[3], f"{D}/ppt/media/image7.png")
+    shutil.copy(sys.argv[4], f"{D}/ppt/media/image1.svg")  # the template's QR placeholder graphic
+    old_blip = '<a:blip><a:extLst><a:ext uri="{96DAC541-7B7A-43D3-8B79-37D633B846F1}">'
+    assert old_blip in x
+    x = x.replace(old_blip, '<a:blip r:embed="rId8"><a:extLst><a:ext uri="{96DAC541-7B7A-43D3-8B79-37D633B846F1}">', 1)
+    x = x.replace('name="Graphic 11"', 'name="QR code" descr="QR code linking to the interactive explorer"', 1)
+
 x = x.replace("</p:spTree>", "".join(new) + "</p:spTree>")
 open(S, "w", encoding="utf-8").write(x)
 
@@ -179,6 +188,9 @@ R = f"{D}/ppt/slides/_rels/slide1.xml.rels"
 r = open(R).read()
 r = r.replace("</Relationships>", '<Relationship Id="rId7" Type="http://schemas.openxmlformats.org/officeDocument/2006/'
               'relationships/image" Target="../media/image6.png"/></Relationships>')
+if len(sys.argv) > 4:
+    r = r.replace("</Relationships>", '<Relationship Id="rId8" Type="http://schemas.openxmlformats.org/officeDocument/2006/'
+                  'relationships/image" Target="../media/image7.png"/></Relationships>')
 for rid in ("rId3", "rId4", "rId5"):
     r = re.sub(rf'<Relationship Id="{rid}"[^>]*/>', "", r)
 open(R, "w").write(r)
