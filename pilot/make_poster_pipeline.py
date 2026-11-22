@@ -38,7 +38,7 @@ def arrow(x0, x1, y):
 C0, C1, C2, C3, C4, C5 = (0.1, 3.9), (4.55, 2.85), (7.95, 2.6), (11.1, 5.9), (17.6, 4.55), (22.75, 5.85)
 HEAD_Y, SUB_Y = H - 0.38, H - 0.95
 heads = [(C0, "Data", "same 50 problems"), (C1, "1  Split", "into steps"),
-         (C2, "2  Embed", "each step"), (C3, "3  Distance", f"to the previous step (problem {PID})"),
+         (C2, "2  Embed", "text → numbers"), (C3, "3  Distance", f"to the previous step (problem {PID})"),
          (C4, "4  Paths", "explore, exploit or loop"), (C5, "5  Compare", "paired by problem, n = 50")]
 for (x, w), h, s in heads:
     ax.text(x + 0.05, HEAD_Y, h, fontsize=36, weight="bold", color=INK, va="center")
@@ -62,9 +62,11 @@ for src, (y0, h, band, c, name, sub) in LANES.items():
         r_, k_ = divmod(i, per_row)
         ax.add_patch(Rectangle((C1[0] + 0.05 + k_ * (size + gap), y0 + h - 0.42 - r_ * (size + gap) - size), size,
                                size, fc="#BDBDBD", ec="none", zorder=3))
-    ax.text(C1[0] + 0.05, y0 + 0.35, f"{len(g)} steps", fontsize=25, color=MUTED, va="center")
+    n_words = int(g.text.str.split().str.len().sum())
+    ax.text(C1[0] + 0.05, y0 + 0.66, f"{n_words:,} words", fontsize=26, weight="bold", color=INK, va="center")
+    ax.text(C1[0] + 0.05, y0 + 0.3, f"{len(g)} steps", fontsize=24, color=MUTED, va="center")
     # distance trace
-    a = fig.add_axes([(C3[0] + 0.55) / W, (y0 + 0.32) / H, (C3[1] - 0.7) / W, (h - 0.55) / H])
+    a = fig.add_axes([(C3[0] + 1.0) / W, (y0 + 0.32) / H, (C3[1] - 1.15) / W, (h - 0.55) / H])
     x = g.start_frac.to_numpy()
     a.axvspan(0.8, 1.0, color="#DADADA", alpha=0.6, lw=0)
     a.plot(x[1:], g.d_prev.to_numpy()[1:], color=c, lw=2.5, zorder=2)
@@ -77,6 +79,7 @@ for src, (y0, h, band, c, name, sub) in LANES.items():
     a.set_xticks([])
     a.set_yticks([0, 1])
     a.tick_params(labelsize=20)
+    a.set_ylabel("cosine\ndistance", fontsize=20, linespacing=1.1, labelpad=6)
     a.spines[["top", "right"]].set_visible(False)
     a.set_facecolor("none")
     # paths: one bar per segment, width proportional to steps, coloured tick = how the segment started
@@ -103,15 +106,18 @@ for src, (y0, h, band, c, name, sub) in LANES.items():
                    (C2[0] + C2[1] + 0.02, C3[0] - 0.02), (C3[0] + C3[1] - 0.12, C4[0] - 0.02)]:
         arrow(x0, x1, yc)
 
-# embed box spanning both lanes
+# embed box spanning both lanes: one step of text becomes a list of numbers
 rbox(C2[0], 1.15, C2[1], 4.5, "white", ec=INK, lw=3, r=0.15, z=2)
-ax.text(C2[0] + 0.25, 5.25, "sentence\nembedding\n(MiniLM)", fontsize=26, color=INK, va="top", linespacing=1.2,
-        zorder=3)
-rng = np.random.default_rng(1)
-for j, v in enumerate(rng.uniform(0.15, 1, 8)):
-    ax.add_patch(Rectangle((C2[0] + 0.3, 3.35 - j * 0.24), 0.32, 0.2, fc=plt.cm.Blues(v), ec="none", zorder=3))
-ax.text(C2[0] + 0.8, 2.45, "step →\nvector", fontsize=24, color=MUTED, va="center", linespacing=1.2, zorder=3)
-ax.text(C2[0] + 0.25, 1.5, "or: Vendi gain", fontsize=23, color=MUTED, style="italic", va="center", zorder=3)
+cx2 = C2[0] + C2[1] / 2
+rbox(C2[0] + 0.3, 4.55, C2[1] - 0.6, 0.85, "#F2F2F2", r=0.1, z=3)
+ax.text(cx2, 4.97, "one step\nof text", fontsize=23, style="italic", color=INK, ha="center", va="center",
+        linespacing=1.1, zorder=4)
+ax.add_patch(FancyArrowPatch((cx2, 4.5), (cx2, 3.95), arrowstyle="-|>", mutation_scale=32, lw=3.5, color=INK, zorder=6))
+ax.text(cx2 + 0.18, 4.22, "MiniLM", fontsize=21, color=MUTED, va="center", zorder=4)
+rbox(cx2 - 0.5, 2.3, 1.0, 1.55, "white", ec=INK, lw=2.5, r=0.08, z=3)
+ax.text(cx2, 3.07, "0.12\n−0.40\n…\n0.07", fontsize=23, color=INK, ha="center", va="center", linespacing=1.1, zorder=4)
+ax.text(cx2, 1.72, "384 numbers:\nsimilar steps\nare close", fontsize=21, color=MUTED, ha="center", va="center",
+        linespacing=1.15, zorder=4)
 
 # compare: two paired plots with the real pilot numbers
 w = ms.pivot(index="problem_id", columns="source")
