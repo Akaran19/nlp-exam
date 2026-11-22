@@ -15,8 +15,10 @@ exploit_re = re.compile(r"\b(?:" + "|".join(EXPLOIT) + r")\b", re.IGNORECASE)
 
 def add_marker_features(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
-    df["n_explore"] = df["solution"].str.count(explore_re)
-    df["n_exploit"] = df["solution"].str.count(exploit_re)
+    # Pass the pattern text plus flags: pandas 3 string columns drop the flags of a compiled pattern,
+    # which made the counts case-sensitive ("Wait", "Maybe", "Therefore" were missed).
+    df["n_explore"] = df["solution"].str.count(explore_re.pattern, flags=re.IGNORECASE)
+    df["n_exploit"] = df["solution"].str.count(exploit_re.pattern, flags=re.IGNORECASE)
     df["explore_per_1k"] = 1000 * df["n_explore"] / df["n_words"]
     df["exploit_per_1k"] = 1000 * df["n_exploit"] / df["n_words"]
     df["explore_share"] = df["n_explore"] / (df["n_explore"] + df["n_exploit"])

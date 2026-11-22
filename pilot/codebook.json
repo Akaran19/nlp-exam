@@ -1,0 +1,1482 @@
+{
+ "0": {
+  "strategies": [
+   {
+    "label": "binary_sequence_encoding",
+    "description": "Model the delivery pattern as a binary string (1=mail, 0=no mail) and translate the two rules into forbidden substrings '11' and '0000'."
+   },
+   {
+    "label": "state_based_recurrence_on_trailing_run",
+    "description": "Define states/functions based on the suffix (ending in M, or in a run of 1, 2, or 3 N's) and derive linear recurrences linking length-n counts to shorter lengths."
+   },
+   {
+    "label": "small_case_computation_pattern_search",
+    "description": "Compute the count for small numbers of houses (n=2,3,4,...) by brute enumeration to spot a pattern (e.g. Fibonacci-like) before generalizing."
+   },
+   {
+    "label": "case_split_by_number_of_mail_houses",
+    "description": "Partition sequences by the total number of houses receiving mail (2,3,4,5) and count arrangements within each case using stars-and-bars on gaps between mail houses."
+   },
+   {
+    "label": "stars_and_bars_gap_distribution",
+    "description": "Within a fixed arrangement of mail houses, distribute the remaining non-mail houses into gaps using the formula C(n-1,k-1), then discover this overcounts because it ignores the upper bound of 3 on gap sizes."
+   },
+   {
+    "label": "error_detection_and_recompute",
+    "description": "Recognize that an initial case-analysis/stars-and-bars approach overcounts (violates the max-3-zeros rule), discard it, and switch to a correct recursive method."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "1": {
+  "strategies": [
+   {
+    "label": "case_split_on_absolute_value",
+    "description": "Split the equation a_{n-1}x = |x^2-1| into two cases based on whether |x|≥1 or |x|<1 to remove the absolute value."
+   },
+   {
+    "label": "quadratic_formula_with_root_selection",
+    "description": "Solve each resulting quadratic with the quadratic formula and select the root consistent with the sign/region constraints (x>0, |x|≥1, etc.)."
+   },
+   {
+    "label": "derive_explicit_recurrence",
+    "description": "Combine the two valid roots' midpoint to obtain an explicit recurrence a_n = sqrt(a_{n-1}^2+4)/2 relating consecutive terms."
+   },
+   {
+    "label": "substitution_to_linear_recurrence_and_geometric_series",
+    "description": "Set b_n = a_n^2 to turn the recurrence into a linear one, unroll it, and sum the resulting geometric series to get a closed form for b_n."
+   },
+   {
+    "label": "fixed_point_limit_equation",
+    "description": "Assume the limit L exists, plug it into the intersection/midpoint condition to get a self-consistency equation L = f(L), and solve for L."
+   },
+   {
+    "label": "small_case_computation",
+    "description": "Explicitly compute a_2 by solving the intersections for n=2 to build intuition about the recursive pattern."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "2": {
+  "strategies": [
+   {
+    "label": "geometric_reinterpretation",
+    "description": "Rewrite the system as the intersection of the lines y=±x (from factoring x²-y²) with a circle of radius 1 centered at (a,0), turning the algebra problem into a geometry problem."
+   },
+   {
+    "label": "symmetry_about_x_axis",
+    "description": "Argue that since the configuration is symmetric about the x-axis, intersection points off the axis must come in pairs, suggesting an even count of solutions."
+   },
+   {
+    "label": "boundary_case_testing",
+    "description": "Plug in specific/extreme values of a (e.g., a=0, a=100, a=±1, a=±√2) to determine the number of solutions in representative scenarios (no intersection, tangency, generic intersection)."
+   },
+   {
+    "label": "counterexample_for_odd_count",
+    "description": "Find a special value of a (a=±1) where the circle passes through the origin, giving an odd number (3) of intersections and refuting the naive even-count conjecture."
+   },
+   {
+    "label": "substitute_y2_eq_x2",
+    "description": "Replace y² with x² in the circle equation to reduce the system to a single quadratic in x, then use the discriminant to count real solutions for various a."
+   },
+   {
+    "label": "case_split_on_root_value",
+    "description": "After solving the quadratic for x, split into cases based on whether the roots are zero, equal, or nonzero to correctly count how many y-values (0, 1, or 2) each root contributes."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "3": {
+  "strategies": [
+   {
+    "label": "symmetry_substitution_x0_y0",
+    "description": "Compare substitutions (x,0) vs (0,x) (and similar swaps) to derive that f is even and to find a relation pinning down f(0) and f(1/2)."
+   },
+   {
+    "label": "ruling_out_constant_solution",
+    "description": "Assume f is constant, plug into the equation, and show the resulting quadratic in c has no rational roots, eliminating the constant case."
+   },
+   {
+    "label": "forcing_f0_value",
+    "description": "Use the equation f(a)(1-4f(0)) = 1/2 - f(1/2) together with the impossibility of a nonzero coefficient (which would force f constant) to deduce f(0)=1/4."
+   },
+   {
+    "label": "assume_quadratic_ansatz",
+    "description": "Guess that f has the form ax^2+bx+c, use known values/evenness to solve for a,b,c and verify the resulting function satisfies the functional equation."
+   },
+   {
+    "label": "difference_equation_for_uniqueness",
+    "description": "Set y=1/2 to get a Cauchy-like equation for g(x)=f(x+1/2)-f(x), show g must be affine (g(x+p)=g(x)+q implies linear g), and conclude f must be quadratic, proving uniqueness."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "4": {
+  "strategies": [
+   {
+    "label": "undetermined_coefficients_ansatz",
+    "description": "Assume a particular solution of the form (Ax+B)cos(2x)+(Cx+D)sin(2x) matching the degree and trig frequency of the forcing term x cos(2x)."
+   },
+   {
+    "label": "characteristic_equation_homogeneous",
+    "description": "Solve the associated homogeneous equation via its characteristic polynomial to find roots r=2,-1, confirming no resonance with 2i."
+   },
+   {
+    "label": "coefficient_matching",
+    "description": "Substitute the ansatz and its derivatives into the ODE, then equate coefficients of xcos(2x), xsin(2x), cos(2x), sin(2x) on both sides to form a linear system."
+   },
+   {
+    "label": "linear_system_solving",
+    "description": "Solve the resulting system of four linear equations in A, B, C, D by substitution (expressing A in terms of C, then B and D via elimination)."
+   },
+   {
+    "label": "try_simplified_ansatz_first",
+    "description": "First test a simpler guess (constant-coefficient cos(2x)+sin(2x) with no x factor) to see if it satisfies the equation before resorting to the full polynomial ansatz."
+   },
+   {
+    "label": "verification_by_backsubstitution",
+    "description": "After solving for the coefficients, plug them back into the equations to confirm the solution satisfies the original system."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "5": {
+  "strategies": [
+   {
+    "label": "constant_function_trial",
+    "description": "Test whether a constant function f(x)=c satisfies the equation, forcing a=0."
+   },
+   {
+    "label": "linear_function_ansatz",
+    "description": "Substitute a linear form f(x)=bx+c into the equation and compare coefficients to rule out nonzero a for continuous f."
+   },
+   {
+    "label": "continuity_discontinuity_mismatch",
+    "description": "Argue that since the floor function is discontinuous, any continuous f(f(y)) expression forces a=0, so nonzero a requires discontinuous f."
+   },
+   {
+    "label": "floor_function_identity_construction",
+    "description": "Use the identity ⌊x+⌊y⌋⌋=⌊x⌋+⌊y⌋ to construct f(x)=⌊x⌋ as an explicit solution for a=1."
+   },
+   {
+    "label": "special_value_substitution",
+    "description": "Plug in specific values like x=0, y=0, y=1, or integer y to derive simplified relations such as periodicity or f(f(y))=a⌊y⌋."
+   },
+   {
+    "label": "reduce_to_integer_floor_equation",
+    "description": "Reduce the problem to analyzing ⌊a⌊x⌋⌋=⌊x⌋ for integers and bound/pin down a via testing integer k or large powers of 10."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "6": {
+  "strategies": [
+   {
+    "label": "substitute_y_equals_0",
+    "description": "Set y=0 in the functional equation to derive the key relation f(f(x)) = f(x)^2 + f(f(0))."
+   },
+   {
+    "label": "substitute_x_equals_y_equals_0",
+    "description": "Plug in x=0 and y=0 simultaneously to force f(0)^2 = 0 and conclude f(0) = 0."
+   },
+   {
+    "label": "substitute_t_equals_fx",
+    "description": "After showing f(f(x)) = f(x)^2, let t = f(x) range over the image of f to conclude f(t) = t^2 on that range."
+   },
+   {
+    "label": "polynomial_degree_matching",
+    "description": "Assume f is a polynomial of degree n and compare degrees of f(f(x)) (degree n^2) versus f(x)^2 (degree 2n) to restrict n to 0 or 2."
+   },
+   {
+    "label": "test_candidate_function_forms",
+    "description": "Plug in specific candidate forms for f (constant, linear ax+b, quadratic ax^2+bx, exponential a^x, trigonometric sin(g(x)), rational 1/x) directly into the equation to check which satisfy it."
+   },
+   {
+    "label": "coefficient_comparison_quadratic",
+    "description": "Assume f(x)=ax^2+bx, expand f(f(x)) and f(x)^2 as polynomials, and match coefficients of like powers of x to solve for a and b."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "7": {
+  "strategies": [
+   {
+    "label": "assume_linear_form",
+    "description": "Guess f(n) = n + c for a constant c, compute the k-th iterate as n + ck, and solve the resulting inequality in c and k."
+   },
+   {
+    "label": "case_split_on_constant",
+    "description": "Analyze the inequality (c-1)k ≤ 1 by splitting into cases c=1, c≥3, and c=2 to isolate the unique value c=2 that gives exactly one valid k."
+   },
+   {
+    "label": "test_simple_candidates",
+    "description": "Plug in simple candidate functions like f(n)=n, f(n)=n+1, f(n)=n+3, or piecewise functions to check whether they satisfy or violate the uniqueness condition."
+   },
+   {
+    "label": "induction_on_n",
+    "description": "Use strong induction on n, assuming f(m)=m+2 for all m<n, to force f(n)=n+2 via the uniqueness condition."
+   },
+   {
+    "label": "base_case_case_analysis",
+    "description": "For n=1, enumerate the possible small values of f(1) (1, 2, or 3) and derive contradictions for all but one using the uniqueness requirement and cross-checking with n=2."
+   },
+   {
+    "label": "construct_counterexample_perturbation",
+    "description": "Attempt to perturb f away from n+2 at specific points (e.g., piecewise or altered values) and show this breaks the existence/uniqueness condition, ruling out non-n+2 solutions."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "8": {
+  "strategies": [
+   {
+    "label": "special_value_substitution",
+    "description": "Plug in special inputs like x=0, x=1, and x=-1 to derive constraints such as f(0)=0, f(1)=1, and f(-1)=±1."
+   },
+   {
+    "label": "constant_function_check",
+    "description": "Test constant functions f(x)=c directly in the equation to find c=c² forces c=0 or c=1."
+   },
+   {
+    "label": "guess_power_and_absolute_value_forms",
+    "description": "Conjecture and verify that f(x)=x^n and f(x)=|x|^n satisfy the equation by direct substitution."
+   },
+   {
+    "label": "construct_zero_on_multiples_counterexample",
+    "description": "Build exotic solutions by setting f=0 on multiples of a prime (e.g. 2 or 3) and f(x)=x otherwise, checking it still satisfies multiplicativity."
+   },
+   {
+    "label": "prime_factorization_decomposition",
+    "description": "Use the Fundamental Theorem of Arithmetic to express any integer as a product of primes and show f is determined by (arbitrary) values at primes together with f(0), f(1), f(-1)."
+   },
+   {
+    "label": "reduce_to_coprime_prime_power_lemma",
+    "description": "Prove multiplicativity holds for general x,y by combining prime-power pieces via exponent addition, showing no further constraints on f(p) are needed."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "9": {
+  "strategies": [
+   {
+    "label": "trial_with_small_cases",
+    "description": "Plug in small specific values of p (starting with p=2) and small integers m to discover initial solutions before attempting a general argument."
+   },
+   {
+    "label": "polynomial_long_division",
+    "description": "Perform polynomial long division of the numerator m^3-pm+1 by the denominator m^2+pm+2 to rewrite the fraction as a polynomial quotient plus a remainder-over-denominator term."
+   },
+   {
+    "label": "divisor_enumeration_of_fixed_remainder",
+    "description": "Once the remainder reduces to a fixed integer (e.g. 5 when p=2), require the denominator to be one of the finitely many divisors (±1, ±5) of that integer and solve the resulting quadratics for m."
+   },
+   {
+    "label": "parity_argument_to_fix_p",
+    "description": "Analyze the parity of numerator and denominator for odd vs even m and odd prime p to show numerator is always odd and denominator always even, forcing p=2 as the only possible prime."
+   },
+   {
+    "label": "introduce_k_and_form_cubic",
+    "description": "Set the fraction equal to an integer k, clear denominators to get a cubic equation in m with parameters p,k, and consider using the rational root theorem (an approach that is tried but abandoned)."
+   },
+   {
+    "label": "undetermined_coefficients_for_p",
+    "description": "Write the numerator as (m-a)(m^2+pm+2)+b with unknown constants a,b, match coefficients to get an equation in p (like p^2-p-2=0), and solve algebraically to pin down p=2 instead of using parity."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "10": {
+  "strategies": [
+   {
+    "label": "reduce_to_primitive_solutions",
+    "description": "Assume gcd(x,y,z)=1 to simplify the analysis, then scale by an integer k to recover all solutions."
+   },
+   {
+    "label": "parity_case_analysis",
+    "description": "Analyze the parities of x, y, z (via z^2-x^2=2y^2 mod 4) to rule out cases and force x,z odd and y even."
+   },
+   {
+    "label": "difference_of_squares_factorization",
+    "description": "Rewrite z^2-x^2=2y^2 as (z-x)(z+x)=8a^2b^2 and factor into two cases based on divisibility by 2 and 4 to solve for x and z."
+   },
+   {
+    "label": "pythagorean_triple_analogy",
+    "description": "Draw an analogy to the parametrization of Pythagorean triples (x=m^2-n^2, y=2mn, z=m^2+n^2) to guess/motivate a similar parametric form."
+   },
+   {
+    "label": "rational_point_parametrization_on_conic",
+    "description": "Divide by z^2 to view the equation as a conic a^2+2b^2=1, then parametrize rational points via lines of rational slope through a known point (1,0)."
+   },
+   {
+    "label": "attempted_pell_equation_reduction",
+    "description": "Try dividing the equation by x^2 to force a Pell-equation form x^2-2y^2=1, then reject this approach since it requires y/x, z/x to be integers."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "11": {
+  "strategies": [
+   {
+    "label": "small_case_search",
+    "description": "Plug in small non-negative values of x and y to find explicit solutions by direct computation."
+   },
+   {
+    "label": "mod_4_square_restriction",
+    "description": "Use the fact that squares are only 0 or 1 mod 4 to show 4^x+4^y-1 cannot be a square when both x,y>0."
+   },
+   {
+    "label": "gaussian_integer_factorization",
+    "description": "Rewrite z^2+1 as (z-i)(z+i) in the Gaussian integers to try to exploit factorization."
+   },
+   {
+    "label": "difference_of_squares_factorization",
+    "description": "Rearrange the equation into (2^x-1)(2^x+1) = (z-2^y)(z+2^y) to attempt a factorization-based argument."
+   },
+   {
+    "label": "factor_out_common_power",
+    "description": "Factor 4^x out of the sum as 4^x(1+4^{y-x}) to analyze the structure of the right-hand side."
+   },
+   {
+    "label": "wlog_ordering",
+    "description": "Assume without loss of generality x ≤ y (using symmetry in x,y) to reduce the number of cases to check."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "12": {
+  "strategies": [
+   {
+    "label": "plug_in_special_values",
+    "description": "Substitute specific values like x=0, x=1, x=k into the functional equation to extract information such as roots of P."
+   },
+   {
+    "label": "degree_comparison",
+    "description": "Compare the degrees of both sides of the equation (kn vs n+k) to derive a Diophantine constraint on n and k, solved via Simon's Favorite Factoring Trick."
+   },
+   {
+    "label": "coefficient_matching",
+    "description": "Write P(x) as a general polynomial with unknown coefficients, expand all terms, and match coefficients of like powers of x to solve for the coefficients."
+   },
+   {
+    "label": "differentiate_equation",
+    "description": "Differentiate the functional equation using chain and product rules to deduce divisibility conditions on P'(x)."
+   },
+   {
+    "label": "attempted_factorization_descent",
+    "description": "Try to factor out a known root (x-k) from P(x) and substitute P(x)=(x-k)Q(x) into the equation to reduce to a simpler equation in Q, though this approach is abandoned as too messy."
+   },
+   {
+    "label": "scaling_invariance",
+    "description": "Observe that if P(x) is a solution then any constant multiple cP(x) is also a solution, simplifying verification."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "13": {
+  "strategies": [
+   {
+    "label": "treat_as_quadratic_in_a",
+    "description": "Rewrite the equation as a quadratic in a (with coefficients depending on b) and apply the quadratic formula."
+   },
+   {
+    "label": "discriminant_perfect_square",
+    "description": "Require the discriminant of the quadratic in a to be a perfect square for integer solutions to exist."
+   },
+   {
+    "label": "iterated_discriminant_reduction",
+    "description": "Repeat the quadratic/discriminant trick on the resulting equation 17b^2+10b+1=k^2 to reduce it to a Pell-like equation c^2-17k^2=8."
+   },
+   {
+    "label": "bounded_search_pell_like",
+    "description": "Bound and brute-force check small integer values of k (or b) in the Pell-like equation c^2-17k^2=8 to find which make the expression a perfect square."
+   },
+   {
+    "label": "fix_variable_small_cases",
+    "description": "Plug in small specific integer values of a or b (e.g. 0, 1, ±1, ±2,...) directly into the original equation to search for solutions by pattern/trial."
+   },
+   {
+    "label": "back_substitution_and_verification",
+    "description": "Substitute found values of b (or a) back into the original equation, solve the resulting single-variable quadratic, and verify all candidate pairs satisfy the original equation."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "14": {
+  "strategies": [
+   {
+    "label": "symmetric_case_baseline",
+    "description": "Plug in the fully symmetric point x=y=z=3 (forced by the constraint) to get a baseline check that trivially gives 0≥0 and no bound on k."
+   },
+   {
+    "label": "reduce_to_one_variable_via_x_equals_y",
+    "description": "Set x=y, solve the constraint for z=x/(x-2), and substitute into the inequality to reduce the problem to a single-variable inequality in x."
+   },
+   {
+    "label": "loose_amgm_cauchy_bounds",
+    "description": "Use AM-GM on the constraint to derive xyz≥27 and Cauchy-Schwarz (xy+yz+zx≤x²+y²+z²) to obtain a quick but non-optimal bound such as k≤3."
+   },
+   {
+    "label": "discriminant_of_reduced_quadratic",
+    "description": "After factoring out a perfect square like (x-3)², require the remaining quadratic in x to stay nonnegative by forcing its discriminant ≤0, solving for the critical k."
+   },
+   {
+    "label": "numerical_trial_search",
+    "description": "Plug in several explicit numeric triples (x,y,z) satisfying the constraint (e.g. x=y=4,5,6,7) to compute the implied bound on k and observe convergence to a candidate value."
+   },
+   {
+    "label": "substitution_normalize_and_SOS",
+    "description": "Substitute x=3/a, y=3/b, z=3/c (so a+b+c=3) and rewrite the inequality as a sum-of-squares/Schur-like expression in (a-b)², (a-c)(b-c) to rigorously prove the sharp constant works."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "15": {
+  "strategies": [
+   {
+    "label": "project_onto_pi",
+    "description": "Reduce the 3D problem by orthogonally projecting the three perpendicular planes onto π, turning them into three lines forming a triangle."
+   },
+   {
+    "label": "reduce_to_2d_angle_bisector_problem",
+    "description": "Reinterpret equidistance from three planes as equidistance from three lines in the plane π, using the classical fact that equidistance from two lines means lying on their angle bisector."
+   },
+   {
+    "label": "incenter_excenter_identification",
+    "description": "Recognize that the points equidistant from all three sides of the triangle formed in π are exactly the incenter and the three excenters."
+   },
+   {
+    "label": "lift_2d_solution_to_lines",
+    "description": "Extend each 2D solution point (incenter/excenters) into a full line in space by allowing the coordinate perpendicular to π (z) to vary freely, since distances to the planes don't depend on it."
+   },
+   {
+    "label": "set_up_coordinates_with_pi_as_xy_plane",
+    "description": "Choose coordinates so that π is the xy-plane and write the three planes' equations explicitly in terms of (x,y) only, exploiting their perpendicularity to π."
+   },
+   {
+    "label": "test_special_triangle_cases",
+    "description": "Check the conjectured locus against specific examples (equilateral triangle, isosceles right triangle) to confirm the incenter/excenter pattern."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "16": {
+  "strategies": [
+   {
+    "label": "sum_diff_substitution",
+    "description": "Introduce s = x^2+y^2 and d = x^2-y^2 to rewrite the constraint as a single equation relating s and d."
+   },
+   {
+    "label": "pythagorean_identity_factoring",
+    "description": "Use the identity (x^2-y^2)^2+4x^2y^2=(x^2+y^2)^2 to simplify the expanded quartic constraint."
+   },
+   {
+    "label": "nonnegativity_constraint_on_squares",
+    "description": "Solve for d (or a=x^2, b=y^2) in terms of s and impose x^2≥0, y^2≥0 to derive a quadratic inequality bounding s."
+   },
+   {
+    "label": "lagrange_style_partial_derivatives",
+    "description": "Attempt to treat the quartic constraint as a function f(x,y) and set partial derivatives to zero to find extrema, later recognizing this ignores the equality constraint."
+   },
+   {
+    "label": "boundary_case_substitution",
+    "description": "Plug in special values like x=0 (or y=0, y=1) into the constraint to find explicit points attaining the candidate extreme values of x^2+y^2."
+   },
+   {
+    "label": "variable_substitution_a_b",
+    "description": "Substitute a=x^2, b=y^2 to reduce the problem to a polynomial equation in two nonnegative variables before analyzing extrema of a+b."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "17": {
+  "strategies": [
+   {
+    "label": "naive_termwise_bounding",
+    "description": "Initially bound y by summing the separate maxima/minima of sin^5x and √3cos x, then reject this as invalid since the two terms cannot attain their extremes simultaneously."
+   },
+   {
+    "label": "cosine_sign_case_split",
+    "description": "Split the domain into cos x ≥ 0 and cos x ≤ 0, restrict x to a half-period interval in each case, and write cos x = ±√(1−sin²x) to reduce y to a function of sin x alone."
+   },
+   {
+    "label": "substitution_and_critical_point_analysis",
+    "description": "Substitute u = sin x to get a single-variable function on a closed interval, then find critical points by setting the derivative to zero and compare these with the endpoint values to locate the extrema."
+   },
+   {
+    "label": "symmetry_mirroring_between_cases",
+    "description": "Use the substitution u → −u (equivalently x → −x) to map the second case's optimization problem onto the first case's, avoiding repeating the full calculus argument."
+   },
+   {
+    "label": "auxiliary_inequality_to_rule_out_roots",
+    "description": "Reduce the critical-point equation to v³−v⁴ = 3/25, bound the maximum of v³−v⁴ on [0,1] via its own calculus/inequality argument, and show it is less than 3/25 to conclude no extra critical points exist without solving the quartic explicitly."
+   },
+   {
+    "label": "evaluate_special_angle_values",
+    "description": "Plug in specific standard angles (0, π/6, π/4, π/3, π/2, π, 3π/2) to numerically probe the behavior of y and guess where the maximum/minimum occur."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "18": {
+  "strategies": [
+   {
+    "label": "compute_initial_terms",
+    "description": "Calculate a_1, a_2, a_3, a_4 explicitly from the recurrence to gather numerical data."
+   },
+   {
+    "label": "pattern_guessing_from_data",
+    "description": "Inspect the computed terms' numerators and denominators to conjecture a closed-form expression for a_n."
+   },
+   {
+    "label": "geometric_sum_identity",
+    "description": "Use the identity 2^1+2^2+...+2^n = 2^{n+1}-2 to simplify the exponents appearing in the denominators."
+   },
+   {
+    "label": "induction_proof",
+    "description": "Prove the conjectured closed form by verifying the base case and showing the recurrence holds in the inductive step."
+   },
+   {
+    "label": "telescoping_substitution",
+    "description": "Define an auxiliary sequence b_n = a_n + 1/2^{2^n} to transform the recurrence into a simple homogeneous multiplicative form that telescopes into a product."
+   },
+   {
+    "label": "product_formula_for_geometric_factors",
+    "description": "Use the identity ∏_{k=0}^{n-1}(1+x^{2^k}) = (1-x^{2^n})/(1-x) with x=1/2 to evaluate the telescoping product in closed form."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "19": {
+  "strategies": [
+   {
+    "label": "symmetric_case_testing",
+    "description": "Plug in symmetric special cases (all equal, three equal and one different, two pairs equal) to derive necessary constraints on k."
+   },
+   {
+    "label": "homogeneity_normalization",
+    "description": "Exploit the degree-4 homogeneity of the inequality to normalize one variable (e.g. set a=1) or reduce to fewer free parameters."
+   },
+   {
+    "label": "ratio_substitution",
+    "description": "Introduce a ratio variable (e.g. a=λc or t=xs) to collapse the problem to a single-variable function and study its extremal behavior as the ratio varies or tends to infinity."
+   },
+   {
+    "label": "cauchy_schwarz_lagrange",
+    "description": "Apply the Cauchy-Schwarz inequality (or its Lagrange identity refinement) to the vectors (a²,b²,c²,d²) and (1,1,1,1) to relate the sum of fourth powers to the squared sum of squares."
+   },
+   {
+    "label": "sos_case_split_proof",
+    "description": "Prove the k=1/12 case rigorously by substituting the minimum variable as a base (d=min, a=d+x, etc.), expressing the difference as a quadratic in d, and showing each coefficient is a nonnegative sum-of-squares/AM-GM expression."
+   },
+   {
+    "label": "calculus_minimization",
+    "description": "Differentiate the reduced single-variable bound function g(x) to locate critical points and determine its infimum, thereby pinning down the sharp value of k."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "20": {
+  "strategies": [
+   {
+    "label": "single_variable_reduction",
+    "description": "Set s=a+b, express c=1-s, and substitute into a^2+b^2+c^2=1 to get a relation purely in a, b (or s)."
+   },
+   {
+    "label": "sum_product_vieta",
+    "description": "Treat a,b as roots of a quadratic with sum s and product p=s^2-s derived from the constraint, then use the quadratic's properties to study s."
+   },
+   {
+    "label": "discriminant_condition",
+    "description": "Require the discriminant of the quadratic with roots a,b to be positive to enforce a>b (real, distinct roots), giving an inequality on s."
+   },
+   {
+    "label": "boundary_inequality_bc",
+    "description": "Translate the ordering condition b>c into an inequality involving s and the square-root expression for b, then solve by isolating and squaring the radical."
+   },
+   {
+    "label": "geometric_sphere_plane_ellipse",
+    "description": "Interpret the two equations as a sphere intersected with a plane (a circle), project to an ellipse in (a,b), and rewrite via s=a+b, d=a-b to find extreme points of s on the ordering-constrained arc."
+   },
+   {
+    "label": "symmetric_function_identity",
+    "description": "Use (a+b+c)^2 = a^2+b^2+c^2+2(ab+bc+ca) to deduce ab+bc+ca=0 and build further relations from symmetric functions."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "21": {
+  "strategies": [
+   {
+    "label": "small_case_experimentation",
+    "description": "Work out the answer for specific small values of n and p by explicitly listing subsets to guess the general pattern."
+   },
+   {
+    "label": "construction_all_subsets_size_leq_p_plus_1",
+    "description": "Propose the family of all subsets of size at most p+1 as the extremal construction, noting two distinct (p+1)-sets can intersect in at most p elements."
+   },
+   {
+    "label": "exchange_augmentation_argument",
+    "description": "Show any optimal family must contain all subsets of size ≤ p by arguing a missing small subset could always be added without violating the intersection bound, increasing the family's size."
+   },
+   {
+    "label": "replace_large_set_with_subsets",
+    "description": "Show no optimal family can contain a set of size ≥ p+2 by replacing it with its (p+1)-element subsets, strictly increasing the family's cardinality while preserving the intersection property."
+   },
+   {
+    "label": "cite_ray_chaudhuri_wilson",
+    "description": "Invoke the Ray–Chaudhuri–Wilson theorem on set systems with bounded pairwise intersections to directly obtain the maximum family size."
+   },
+   {
+    "label": "failed_naive_attempts",
+    "description": "Test and reject naive candidate families (all subsets, or all subsets of exactly size p) by exhibiting violations of the intersection condition."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "22": {
+  "strategies": [
+   {
+    "label": "square_and_add_equations",
+    "description": "Square both given equations and add them, using sin^2+cos^2=1 to obtain sin a cos b + cos a sin b = -1/2."
+   },
+   {
+    "label": "sum_to_product_then_divide",
+    "description": "Add and subtract the original equations, apply sum-to-product identities, factor out the common term, and divide the two resulting equations to isolate tan((a-b)/2)."
+   },
+   {
+    "label": "half_angle_tangent_substitution",
+    "description": "Use the double-angle formula sin x = 2tan(x/2)/(1+tan^2(x/2)) to compute sin(a-b) from tan((a-b)/2), then combine with sin a cos b + cos a sin b to solve for cos a sin b."
+   },
+   {
+    "label": "multiply_the_two_equations",
+    "description": "Try multiplying the two given equations together to see if the product simplifies to something useful (abandoned dead end in several solutions)."
+   },
+   {
+    "label": "introduce_new_variables_and_solve_quadratic",
+    "description": "Set x=sin a, y=cos b, m=cos a, n=sin b, use the linear sum relations plus Pythagorean constraints to derive a quadratic in m, solve it, and compute m·n directly."
+   },
+   {
+    "label": "numeric_guess_and_bound",
+    "description": "Plug in specific trial values of a (e.g., 0, -π/6) to test the system and derive bounds on a, hoping to guess a solution before falling back to algebraic methods."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "23": {
+  "strategies": [
+   {
+    "label": "split_by_containment_of_n",
+    "description": "Partition all subsets of {1,...,n} into those not containing n (whose sum is S_{n-1}) and those containing n, to relate S_n to S_{n-1}."
+   },
+   {
+    "label": "count_position_of_new_element",
+    "description": "For subsets containing the new element n, classify them by the position k that n occupies and count how many such subsets exist using binomial coefficients C(n-1,k-1)."
+   },
+   {
+    "label": "binomial_theorem_power_sum",
+    "description": "Recognize the sum over k of C(n-1,k-1) i^k as a binomial expansion equal to i(1+i)^{n-1}, converting a combinatorial sum into a closed-form complex power."
+   },
+   {
+    "label": "de_moivre_simplification",
+    "description": "Simplify (1+i)^{n-1} by using (1+i)^2 = 2i (or polar form with modulus/argument) to quickly evaluate the complex power."
+   },
+   {
+    "label": "small_case_exploration",
+    "description": "Compute S_1, S_2, S_3 explicitly by brute force to search for a pattern before attempting a general approach."
+   },
+   {
+    "label": "recurrence_relation",
+    "description": "Derive and use an explicit recurrence S_n = 2S_{n-1} + n i (1+i)^{n-1} to compute S_9 directly from S_8."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "24": {
+  "strategies": [
+   {
+    "label": "reflection_congruence_angle_preservation",
+    "description": "Use the fact that O1 is the mirror image of O across BC to conclude triangles BOC and BO1C are congruent, so angle BOC = angle BO1C."
+   },
+   {
+    "label": "inscribed_angle_same_arc",
+    "description": "Apply the inscribed angle theorem to equate angle BAC and angle BO1C since both subtend arc BC of the circumcircle."
+   },
+   {
+    "label": "excenter_angle_formula_via_external_bisectors",
+    "description": "Express angles OBC and OCB as half of the external angles at B and C (since O lies on the external bisectors) to compute angle BOC in terms of triangle's angles."
+   },
+   {
+    "label": "triangle_angle_sum_system",
+    "description": "Set up and solve equations using the triangle angle sum (A+B+C=180) together with the derived relation for angle A to solve for the unknown angle."
+   },
+   {
+    "label": "special_case_testing",
+    "description": "Test specific triangles (equilateral, isosceles right) to gain intuition and check whether the condition O1 on circumcircle holds, guessing the answer A=60°."
+   },
+   {
+    "label": "coordinate_bash_consideration",
+    "description": "Consider setting up coordinates for A, B, C and computing the excenter and reflection explicitly, though ultimately abandoned as too messy."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "25": {
+  "strategies": [
+   {
+    "label": "small_case_brute_force",
+    "description": "Test small values of b and c directly, computing b!c! and checking if the result equals some a! to find initial solutions."
+   },
+   {
+    "label": "quotient_reduction",
+    "description": "Rewrite the equation as a!/b! = c! (or a!/c! = b!) to reduce the search to finding when a ratio of factorials equals another factorial."
+   },
+   {
+    "label": "recursive_factorial_identity",
+    "description": "Use the identity n! = n·(n-1)! and note that if n itself equals k! for some k, then n! = (n-1)!·k!, generating a solution."
+   },
+   {
+    "label": "infinite_family_construction",
+    "description": "Construct an explicit infinite family of solutions (a,b,c) = (k!, k!-1, k) for k>2 to show infinitely many solutions exist."
+   },
+   {
+    "label": "counterexample_outside_family",
+    "description": "Exhibit a solution (e.g. 10! = 6!·7!) that does not fit the constructed infinite family, showing other solution types exist."
+   },
+   {
+    "label": "recall_factorial_theorems",
+    "description": "Consider whether known factorial-related theorems (Legendre's formula, Wilson's theorem, Stirling's approximation) could help solve the equation."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "26": {
+  "strategies": [
+   {
+    "label": "casework_on_key_elements",
+    "description": "Partition subsets into disjoint cases based on whether the subset contains 12, 6, 8, or 4, since these elements determine how divisibility by 12 can be achieved."
+   },
+   {
+    "label": "complementary_counting_within_case",
+    "description": "Within each case, count the total subsets with fixed inclusion/exclusion status of certain elements and subtract the 'bad' subsets that fail to supply the missing prime factor."
+   },
+   {
+    "label": "prime_factorization_tracking",
+    "description": "Factor 12 as 2^2*3 and track which elements contribute factors of 2 and 3 to determine when a subset's product meets the divisibility requirement."
+   },
+   {
+    "label": "inclusion_exclusion_on_exponent_conditions",
+    "description": "Define events A (total power of 2 < 2) and B (total power of 3 < 1), then use |A∪B| = |A|+|B|-|A∩B| to subtract subsets failing divisibility from the total 2^12 subsets."
+   },
+   {
+    "label": "grouping_remaining_elements_by_role",
+    "description": "Partition the leftover numbers (after removing 12,6,8,4) into groups based on divisibility by 2, by 3, or neither, and count required choices independently in each group."
+   },
+   {
+    "label": "small_case_exploration",
+    "description": "Test the analogous smaller problem (set {1,2,3,4}, divisibility by 4) by brute-force enumeration to build intuition before tackling the full problem."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "27": {
+  "strategies": [
+   {
+    "label": "length_recurrence_by_rule",
+    "description": "Derive how each production rule transforms word length (A★B gives a+b+1, ⋁A⋂ gives a+2) to track achievable lengths."
+   },
+   {
+    "label": "parity_invariant_argument",
+    "description": "Prove by induction that every word has odd length since base words are odd and both rules preserve oddness, so no length-8 word exists."
+   },
+   {
+    "label": "enumerate_small_lengths",
+    "description": "Explicitly build out words of increasing small lengths (1,2,3,5,7,...) by hand to observe which lengths are actually achievable."
+   },
+   {
+    "label": "counting_recurrence_f_n",
+    "description": "Set up and compute a recurrence f(n)=f(n-2)+∑ f(i)f(n-i-1) for the number of words of length n and evaluate it up to n=8."
+   },
+   {
+    "label": "proof_by_contradiction_counterexample_search",
+    "description": "Attempt to explicitly construct a length-8 word via various combinations of rules to test and refute the possibility of even-length words."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "28": {
+  "strategies": [
+   {
+    "label": "small_case_exploration",
+    "description": "Hand-simulate the game on tiny boards (1x1, 1x2, 1x3, 2x2, 2x3, 3x3, etc.) to build intuition and detect a pattern for which (m,n) succeed or fail."
+   },
+   {
+    "label": "invariant_search",
+    "description": "Attempt to find a parity/checkerboard-coloring or summation invariant that stays constant throughout moves in order to prove impossibility for certain (m,n)."
+   },
+   {
+    "label": "odd_length_row_clearing",
+    "description": "Show by explicit removal order (e.g. positions 1,3,5,... then 2,4,...) that a single row entirely black side up can always be fully cleared when its length is odd."
+   },
+   {
+    "label": "row_by_row_reduction",
+    "description": "Clear an m x n board row by row from left to right so that removing a whole row flips the entire next row to all-black, reducing the 2D problem to the 1D odd-row-clearing case."
+   },
+   {
+    "label": "symmetry_mn_swap",
+    "description": "Use the symmetry between rows and columns (swap roles of m and n) to extend a result proven for one dimension being odd to the other dimension being odd."
+   },
+   {
+    "label": "pattern_guessing_from_data",
+    "description": "Tabulate solvability results for many small (m,n) pairs computed by trial and error and then guess a general closed-form condition from the observed data, without a rigorous invariant proof."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "29": {
+  "strategies": [
+   {
+    "label": "bound_team_count_via_point_range",
+    "description": "Use the fact that each match contributes between 2 (draw) and 3 (decisive) points to bound the number of teams n so that 2·C(n,2) ≤ 15 ≤ 3·C(n,2), pinning down n=4."
+   },
+   {
+    "label": "infer_record_from_score",
+    "description": "Deduce the exact win/draw/loss pattern of the last-place team (and later the second-to-last team) directly from its total score, e.g. 1 point ⇒ one draw and the rest losses."
+   },
+   {
+    "label": "solve_win_draw_system",
+    "description": "Set up and solve the linear system w+d = total matches, 3w+2d = total points to find how many matches were decisive versus drawn."
+   },
+   {
+    "label": "trial_and_error_match_construction",
+    "description": "Explicitly assign win/draw/loss outcomes to each pairing of the (assumed) four teams, check the resulting point total and ranking constraints, and iteratively fix violations until a consistent schedule is found."
+   },
+   {
+    "label": "case_split_on_ranked_scores",
+    "description": "Enumerate the possible point values for the second-to-last team (based on its no-loss condition) and for each case test all score splits for the remaining teams that respect the strict ordering and sum to the required total."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "30": {
+  "strategies": [
+   {
+    "label": "modular_arithmetic_obstruction",
+    "description": "Use residues of cubes modulo a well-chosen integer (e.g., mod 9 or mod 7) to show that an arithmetic sequence lying entirely in a forbidden residue class contains no sums of two cubes, giving n=0."
+   },
+   {
+    "label": "one_beautiful_term_implies_infinite",
+    "description": "Show that if one term a+md of the progression equals x^3+y^3, then shifting x by multiples of the common difference d produces infinitely many other beautiful terms (x+kd)^3+y^3 belonging to the same progression."
+   },
+   {
+    "label": "shift_the_cube_base_construction",
+    "description": "Explicitly construct new beautiful numbers in the same progression by replacing x with x+kd (rather than adding d directly to the sum), using the binomial expansion (x+kd)^3 to verify it stays in the arithmetic progression."
+   },
+   {
+    "label": "test_specific_sequences",
+    "description": "Experiment with concrete arithmetic sequences (e.g., all integers, evens, 4+9k, 9+7k) to build intuition about which sequences contain beautiful numbers."
+   },
+   {
+    "label": "classify_via_dichotomy",
+    "description": "Argue that the count of beautiful numbers in any arithmetic progression must be either exactly 0 or infinite, ruling out any finite positive n by combining the modular nonexistence and infinite-generation arguments."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "31": {
+  "strategies": [
+   {
+    "label": "angle_bisector_theorem_in_subtriangle",
+    "description": "Apply the angle bisector theorem to CD bisecting angle ECB within sub-triangle ECB to relate BC/CE to DB/ED."
+   },
+   {
+    "label": "law_of_cosines_with_30_60_angles",
+    "description": "Use the law of cosines with the known 30°/60° trisected angles to set up equations relating side lengths and the unknown scale factor a."
+   },
+   {
+    "label": "law_of_cosines_for_angle_B",
+    "description": "Apply the law of cosines in triangle BCE (or similar) to solve for cos B and then derive tan B via sin B."
+   },
+   {
+    "label": "wlog_scale_assignment",
+    "description": "Set DE=8, BE=15 directly (instead of 8k,15k) exploiting that tan B is scale-invariant to simplify computation."
+   },
+   {
+    "label": "case_check_point_order",
+    "description": "Check the alternative ordering of D and E on AB (A-D-E-B vs A-E-D-B) and rule it out via a resulting contradiction (negative cosine) for a right angle at C."
+   },
+   {
+    "label": "coordinate_parameterization",
+    "description": "Place C at the origin and parameterize points D, E on AB using slopes corresponding to the trisection angles to directly compute positions algebraically."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "32": {
+  "strategies": [
+   {
+    "label": "boundary_limit_substitution",
+    "description": "Set x=0 (or take the limit x→0+, y→0+) to simplify the equation and deduce a pointwise value such as f(0)=1."
+   },
+   {
+    "label": "ansatz_guess_and_verify",
+    "description": "Guess a candidate closed-form function (e.g. f(x)=a/(x+a)) and plug it back into the equation to check it satisfies the functional equation."
+   },
+   {
+    "label": "rule_out_increasing_by_contradiction",
+    "description": "Assume f is strictly increasing, pick specific values x=a, y=a/f(a), and derive a numeric contradiction (like 2<1) to show f must be decreasing."
+   },
+   {
+    "label": "derive_boundedness",
+    "description": "Use the functional equation with a fixed x (e.g. x=1) and a substitution for y to show f is bounded above by some constant M."
+   },
+   {
+    "label": "two_sided_squeeze_bounding",
+    "description": "Bound f(z) from above and below using the supremum M of f via substitutions z=x+y and z=f(x)y, then let y→0+ to force f(x)=Ma/(x+a)."
+   },
+   {
+    "label": "substitute_y_as_ratio",
+    "description": "Substitute y = k/f(x) (or similar ratio) to simplify the nested term f(y·f(x)) into a single-variable expression."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "33": {
+  "strategies": [
+   {
+    "label": "variable_substitution_reduce",
+    "description": "Substitute z=1-x, t=1-y to reduce the problem to a function of two variables x,y on [0,1]^2."
+   },
+   {
+    "label": "special_case_testing",
+    "description": "Evaluate P at boundary/symmetric points (x=y, x=0,y=1, x=z=0, x=y=z=t=1/2) to guess the extremal values 1 and 2."
+   },
+   {
+    "label": "clear_denominators_brute_force",
+    "description": "Multiply the conjectured inequalities by the product of denominators and expand/simplify algebraically to reduce to an obviously true inequality like (x-y)^2≥0."
+   },
+   {
+    "label": "auxiliary_variable_change",
+    "description": "Introduce new variables u=ax^2+by^2, v=ax+by, c=a+b to rewrite P compactly and simplify the proof of the bounds."
+   },
+   {
+    "label": "term_wise_mean_inequality",
+    "description": "Bound each fraction (ax^2+by^2)/(ax+by) individually above by 1 (since x^2≤x) and below by the weighted linear mean (ax+by)/(a+b), then sum the two bounds."
+   },
+   {
+    "label": "zero_parameter_case",
+    "description": "Separately analyze the degenerate case where a=0 or b=0 to show P collapses to 1 before assuming a,b>0."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "34": {
+  "strategies": [
+   {
+    "label": "coordinate_setup_with_diagonal_lengths",
+    "description": "Place the square and rhombus in a coordinate system centered at the origin, compute the rhombus's diagonal lengths (2 and 2√3) via 30-60-90 triangle ratios, and write equations for the sides/diagonals."
+   },
+   {
+    "label": "quadrant_symmetry_reduction",
+    "description": "Use the four-fold symmetry of the centered square and rhombus to analyze only one quadrant and multiply the resulting area by 4."
+   },
+   {
+    "label": "square_minus_corner_triangles",
+    "description": "Compute the overlap as the square's area minus the four congruent 30-60-90 corner triangles that lie outside the rhombus but inside the square."
+   },
+   {
+    "label": "line_intersection_for_vertices",
+    "description": "Find the equation of a rhombus side line and intersect it with a square side (e.g. x=1) to get the exact vertices of the leftover/overlap triangles."
+   },
+   {
+    "label": "direct_integration_over_region",
+    "description": "Set up and evaluate an integral of the rhombus boundary function over the square's extent to directly compute the overlap area."
+   },
+   {
+    "label": "picks_theorem_lattice_attempt",
+    "description": "Attempt to apply Pick's theorem by treating the shapes as lattice polygons, then discover the rhombus vertices can't lie on an integer grid and discard the approach."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "35": {
+  "strategies": [
+   {
+    "label": "dimension_reduction_to_1d",
+    "description": "Simplify the problem by first analyzing the 1-dimensional case (single coordinate with a, P) before tackling the full 3D problem."
+   },
+   {
+    "label": "pigeonhole_complement_bound",
+    "description": "Argue via complements that selecting fewer than a-P+1 elements leaves room for a P-subset avoiding all selected elements, giving the 1D lower bound a-P+1."
+   },
+   {
+    "label": "cartesian_product_construction",
+    "description": "Build the 3D selection set as the cartesian product D1×D2×D3 of optimal 1D solutions in each coordinate and show this product size (a-P+1)(b-Q+1)(c-R+1) works."
+   },
+   {
+    "label": "independent_coordinate_decomposition",
+    "description": "Treat the x, y, z coordinates as independent sub-problems and solve/optimize each one separately before combining."
+   },
+   {
+    "label": "small_case_exploration",
+    "description": "Test small concrete numerical examples (e.g., a=4,p=1 or a=5,b=6,P=3,Q=2) to build intuition and verify the conjectured formula."
+   },
+   {
+    "label": "double_counting_covering_bound",
+    "description": "Use a covering/double-counting argument comparing the number of (S1,S2,S3) subsets to the coverage per selected triple to derive a lower bound on M."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "36": {
+  "strategies": [
+   {
+    "label": "circumcenter_location_criterion",
+    "description": "Use the fact that a triangle inscribed in a circle is acute iff the circle's center lies inside the triangle, turning the problem into a center-containment counting problem."
+   },
+   {
+    "label": "fix_vertex_opposite_sides_of_diameter",
+    "description": "For each vertex P, count pairs of other vertices lying on opposite sides of the ray/line through P and the center O, giving a count proportional to triangles containing O."
+   },
+   {
+    "label": "resolve_overcount_via_linear_system",
+    "description": "Since the opposite-sides count counts each acute triangle 3 times and each obtuse (and right) triangle once, set up equations (3P+Q(+R)=count, P+Q(+R)=C(n,3)) and solve for the number of acute triangles P."
+   },
+   {
+    "label": "odd_even_case_split",
+    "description": "Split the analysis into n odd and n even cases because even n introduces right triangles (diametrically opposite vertex pairs) that must be handled separately."
+   },
+   {
+    "label": "arc_based_angle_criterion",
+    "description": "Attempt to classify triangles as acute by requiring every arc between consecutive chosen vertices to be less than 180°, using the inscribed angle theorem relating angles to opposite arcs."
+   },
+   {
+    "label": "small_case_verification",
+    "description": "Compute the probability explicitly for small n (e.g., n=3,4,5,6) and check asymptotic behavior (n→∞ approaching 1/4) to validate the general formula."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "37": {
+  "strategies": [
+   {
+    "label": "sandwich_bounds_at_k_plus_10",
+    "description": "Combine iterated applications of the k+2 lower-bound recurrence with the single use of the l+5 upper-bound recurrence to squeeze u_{n+10} between equal bounds, forcing u_{n+10} = u_n + 10."
+   },
+   {
+    "label": "compute_small_terms_via_squeeze",
+    "description": "Explicitly chain the two inequalities to pin down u_0 through u_10 one index at a time by sandwiching each term between a lower bound from doubling steps and an upper bound derived from later terms."
+   },
+   {
+    "label": "guess_linear_formula_then_verify",
+    "description": "Conjecture from the computed initial values that u_k = 100 + k for all k, then verify that this formula satisfies both given inequalities with equality."
+   },
+   {
+    "label": "define_deviation_sequence",
+    "description": "Introduce v_n = u_n - (n+100) and show the two recurrences force v_n ≥ 0 and v_n ≤ 0 at corresponding indices, implying v_n = 0 everywhere."
+   },
+   {
+    "label": "lcm_of_step_sizes",
+    "description": "Observe that since 2 and 5 are the step sizes in the two recurrences, their lcm (10) is the natural index gap over which both bounds can be combined to get an exact equality."
+   },
+   {
+    "label": "average_rate_argument",
+    "description": "Interpret the two recurrences as bounding the average per-step increase from below and above by 1, concluding the sequence must increase by exactly 1 per step on average."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "38": {
+  "strategies": [
+   {
+    "label": "substitution_a_eq_1_over_x",
+    "description": "Introduce new variables a=1/x, b=1/y to directly express the target quantity as a+b and rewrite the original equation in terms of these variables."
+   },
+   {
+    "label": "divide_by_x3y3",
+    "description": "Divide the original equation through by x^3y^3 so that each term becomes a power of 1/x or 1/y, enabling the substitution into a and b."
+   },
+   {
+    "label": "symmetric_functions_s_p",
+    "description": "Express the transformed equation using s=a+b and p=ab via the identity a^3+b^3=s^3-3ps, reducing it to a polynomial relation in s and p."
+   },
+   {
+    "label": "factor_cubic_in_s",
+    "description": "Factor the resulting cubic s^3-3ps+3p-1=0 as (s-1)(s^2+s+1-3p)=0 to split into two separate cases for s."
+   },
+   {
+    "label": "discriminant_reality_condition",
+    "description": "Require the quadratic t^2-st+p=0 (with roots a,b) to have real solutions by imposing s^2-4p≥0, then show this forces a perfect square (s+2)^2≤0."
+   },
+   {
+    "label": "trial_small_values",
+    "description": "Test specific simple values (like x=y=1, x=1,y=-1, x=y=-1, or y=±1) to find particular solutions and candidate values of 1/x+1/y before seeking the general solution."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "39": {
+  "strategies": [
+   {
+    "label": "ceva_condition_on_pedal_points",
+    "description": "Translate the concurrency of AD, BE, CF into the Ceva ratio condition (BD/CD)(CE/AE)(AF/BF)=1 for the pedal points of P."
+   },
+   {
+    "label": "verify_O_and_I_are_nice",
+    "description": "Directly check that P=O (projections are midpoints) and P=I (projections are the incircle tangent points) satisfy Ceva's theorem using known side-ratio formulas."
+   },
+   {
+    "label": "parametrize_on_line_OI_via_thales",
+    "description": "Parametrize a general point P on line OI by the ratio OP/OI and use Thales'/similar-triangle arguments comparing projections to the midpoint M and the incircle touch point D to express each pedal segment length in terms of a parameter k."
+   },
+   {
+    "label": "reduce_to_cubic_in_k",
+    "description": "Substitute the parametrized pedal-segment expressions into the Ceva product-equals-one condition to obtain a single cubic polynomial equation in the ratio parameter k."
+   },
+   {
+    "label": "root_counting_argument",
+    "description": "Note that k=0 and k=1 (corresponding to O and I) are already roots of the cubic, and argue the remaining root must be real to conclude there are exactly three nice points."
+   },
+   {
+    "label": "identify_locus_as_known_cubic",
+    "description": "Recognize that the set of points P with concurrent pedal cevians is a known triangle cubic (the Darboux cubic) and count its intersection with line OI using Bezout-type reasoning plus known centers lying on it."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "40": {
+  "strategies": [
+   {
+    "label": "arc_chasing_bisector_midpoints",
+    "description": "Use the fact that D and E are midpoints of arcs BC and AC to express arcs BD, DC, AE, EC in terms of angles A and B, and compute arc DE = angle A + angle B."
+   },
+   {
+    "label": "inscribed_angle_shared_chord",
+    "description": "Repeatedly apply the inscribed angle theorem to chords (BD, CD, CE, AE, AB) to transfer equal angles between points A, B, C, D, E on the circumcircle."
+   },
+   {
+    "label": "central_vs_inscribed_angle_DOE",
+    "description": "Compute angle DOE as a central angle by splitting it into angle DOC + angle COE and doubling the corresponding inscribed half-angles A/2 and B/2."
+   },
+   {
+    "label": "cyclic_quadrilateral_DEOI",
+    "description": "Use the concyclicity of D, E, O, I to equate angle DIE with angle DOE (same arc) and then apply the triangle angle sum in triangle DIE to solve for A+B, giving C=60."
+   },
+   {
+    "label": "equilateral_special_case_check",
+    "description": "Test the equilateral triangle case where O and I coincide to verify that angle C = 60° is a consistent solution before proving it's forced in general."
+   },
+   {
+    "label": "coordinate_geometry_consideration",
+    "description": "Consider setting up Cartesian coordinates for A, B, C and computing angle bisectors, incenter, and circumcenter algebraically, though this approach is judged too messy and abandoned."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "41": {
+  "strategies": [
+   {
+    "label": "trial_small_cases",
+    "description": "Test small candidate values of a (like a=1, a=9) to see whether b and c come out as integers, building intuition for the needed factorization."
+   },
+   {
+    "label": "prime_divisibility_chain",
+    "description": "Repeatedly use that a prime dividing a power (b^3 or c^2) must divide the base, substituting b=3b1, c=5c1, etc., to successively simplify the equation into a minimal m^3=n^2 form."
+   },
+   {
+    "label": "reduce_to_m3_eq_n2",
+    "description": "Recognize the simplified equation b^3=c^2 (or similar) as a classic Diophantine form whose solutions are parametrized by n=k^3, m=k^2 for some integer k."
+   },
+   {
+    "label": "prime_exponent_matching",
+    "description": "Write a, b, c in terms of prime factorizations and match exponents in the equations 3a=b^3 and 5a=c^2 to derive congruence conditions on each exponent."
+   },
+   {
+    "label": "chinese_remainder_on_exponents",
+    "description": "Combine the modulo 2 and modulo 3 congruence constraints on the exponent of each prime (especially 3 and 5) using the Chinese Remainder Theorem to find the minimal exponent pattern."
+   },
+   {
+    "label": "minimal_solution_assumption",
+    "description": "Assume a must contain exactly the prime powers 3^2 and 5^3 (the minimal exponents satisfying the cube/square divisibility requirements) to pin down the smallest positive integer value of a."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "42": {
+  "strategies": [
+   {
+    "label": "test_symmetric_case_a_equals_b",
+    "description": "Substitute a=b=t into the equations to probe which values satisfy the constraint before doing full casework."
+   },
+   {
+    "label": "naive_absolute_value_removal",
+    "description": "Try dropping all absolute value signs directly to see if it simplifies the system, noting that this fails since it gives a trivial identity."
+   },
+   {
+    "label": "reduce_to_difference_equations",
+    "description": "Rewrite the three-way equality as two difference equations of the form |x-1|-|x|+... = 0 to simplify handling three equal expressions."
+   },
+   {
+    "label": "piecewise_case_analysis_on_critical_points",
+    "description": "Classify the real line into intervals determined by the critical points -1, 0, 1 and evaluate |x-1|-|x| and |x+1|-|x| on each piece."
+   },
+   {
+    "label": "exhaustive_region_casework_on_a_b",
+    "description": "Systematically go through all sign/interval combinations for a and b (grid of regions) to determine which combined regions satisfy both equations."
+   },
+   {
+    "label": "boundary_minimization_in_feasible_region",
+    "description": "Once the feasible region (a,b ≥1 or a,b ≤ -1) is identified, argue that |a+b| is minimized at the boundary points a=b=1 or a=b=-1."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "43": {
+  "strategies": [
+   {
+    "label": "count_pairwise_intersections",
+    "description": "Use combinatorics (3 choose 2 pairs, each pair meeting twice) to determine there are 6 intersection points among the three great circles, splitting each road into 4 arcs."
+   },
+   {
+    "label": "no_simultaneous_occupancy_bound",
+    "description": "Argue that at each intersection point the two trains passing through cannot overlap in time, giving L_A+L_B ≤ 1 for every pair of roads."
+   },
+   {
+    "label": "sum_pairwise_inequalities",
+    "description": "Add the three pairwise inequalities (L_A+L_B≤1, etc.) and divide by 2 to derive the global bound L_A+L_B+L_C ≤ 3/2."
+   },
+   {
+    "label": "explicit_offset_construction",
+    "description": "Construct an achieving configuration by placing trains on equal segments between intersections and offsetting their timing (e.g. by 1/8) so they never coincide at a crossing."
+   },
+   {
+    "label": "small_case_exploration",
+    "description": "Examine simplified or degenerate configurations (e.g. three mutually perpendicular great circles with point-like trains at poles/equator) to build intuition before tackling the general optimization."
+   },
+   {
+    "label": "symmetry_assumption",
+    "description": "Assume a fully symmetric arrangement (equal segment lengths, equal train lengths, equal offsets) to simplify the search for the optimal configuration."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "44": {
+  "strategies": [
+   {
+    "label": "small_case_exploration",
+    "description": "Analyze a tiny version of the problem (e.g., {1,2,3,4}) by enumerating all subsets/partitions to build intuition before tackling 1–100."
+   },
+   {
+    "label": "group_all_primes_together",
+    "description": "Place 1 and all prime numbers into a single group since any two distinct primes are automatically coprime."
+   },
+   {
+    "label": "counterexample_rejects_grouping",
+    "description": "Test a proposed grouping (e.g., all composites together, or grouping by number of prime factors) by finding a specific pair violating the all-coprime/all-not-coprime condition, thereby ruling it out."
+   },
+   {
+    "label": "least_prime_factor_partition",
+    "description": "Partition composite numbers into groups according to their smallest prime factor, ensuring every pair within a group shares that factor and hence is pairwise non-coprime."
+   },
+   {
+    "label": "sqrt_n_bound_on_prime_factors",
+    "description": "Use the fact that any composite number ≤100 must have a prime factor ≤10, limiting the relevant smallest-prime-factor classes to 2, 3, 5, 7."
+   },
+   {
+    "label": "mixing_groups_creates_violation",
+    "description": "Argue minimality by showing that merging any two of the constructed groups introduces both a coprime pair and a non-coprime pair, so no fewer groups suffice."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "45": {
+  "strategies": [
+   {
+    "label": "isolate_y_mod_11",
+    "description": "Solve for y explicitly and require the numerator to be divisible by 11, analyzed via modular arithmetic mod 11."
+   },
+   {
+    "label": "quadratic_residue_bruteforce",
+    "description": "Reduce the quadratic in x modulo 11 and test all residues 0..10 to find which x-values satisfy the congruence."
+   },
+   {
+    "label": "quadratic_formula_perfect_square",
+    "description": "Apply the quadratic formula to solve for x in terms of y, forcing the discriminant 11+110y to be a perfect square k^2."
+   },
+   {
+    "label": "crt_on_k",
+    "description": "Use the Chinese Remainder Theorem to combine congruences on k modulo 10 and modulo 11 to find all valid k."
+   },
+   {
+    "label": "quadratic_congruence_discriminant",
+    "description": "Treat the modular equation as a quadratic congruence mod 11 and solve via the quadratic formula/discriminant in that modulus, using inverses of coefficients."
+   },
+   {
+    "label": "small_case_testing",
+    "description": "Plug in small integer values of x (0,1,2,...) to find initial solutions before generalizing."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "46": {
+  "strategies": [
+   {
+    "label": "substitute_t_sqrt_x_minus_2y",
+    "description": "Introduce t = √(x−2y) ≥ 0 and write x = t²+2y to eliminate the inner square root from both equations."
+   },
+   {
+    "label": "quadratic_in_t_with_abs_y",
+    "description": "Plug x = t²+2y into the first equation to get a quadratic t² − ty − 6y² = 0, solve via the quadratic formula introducing |y|, and split into cases y>0 and y<0 to pick the sign of t that keeps t ≥ 0."
+   },
+   {
+    "label": "substitute_s_eq_x_plus_t",
+    "description": "Set s = x + t (equivalently x+3y or x+√(x−2y)) to reduce the outer equation to the simple form √s = s − 3, solvable as a quadratic after squaring."
+   },
+   {
+    "label": "square_both_sides",
+    "description": "Square equations such as √s = s−3 or √(x−2y) = (...) to remove radicals and obtain polynomial equations, while tracking sign conditions to avoid extraneous roots."
+   },
+   {
+    "label": "special_case_x_zero",
+    "description": "Try the special value x=0 to simplify the system and probe for consistency/contradictions before attempting the general substitution approach."
+   },
+   {
+    "label": "domain_sign_analysis",
+    "description": "Carefully analyze domain restrictions (y≠0, x−2y≥0, nonnegativity of square root expressions) to discard spurious branches like t=3y when y<0."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "47": {
+  "strategies": [
+   {
+    "label": "coordinate_setup_at_tangency_point",
+    "description": "Place the origin at the point of tangency of the two given circles with the line of centers as the x-axis, so the circle centers are at (r,0) and (R,0)."
+   },
+   {
+    "label": "tangency_distance_equations",
+    "description": "Translate internal/external tangency conditions into equations for distances between centers equal to the difference or sum of radii, with the unknown circle's y-coordinate equal to its radius since it's tangent to the x-axis."
+   },
+   {
+    "label": "subtract_equations_for_linear_relation",
+    "description": "Subtract the two squared distance equations to cancel quadratic terms and obtain a linear relation between x and y, then substitute back to solve for x and y."
+   },
+   {
+    "label": "circle_inversion_attempt",
+    "description": "Attempt to invert about the point of tangency to turn the two circles into parallel lines, simplifying the tangency conditions, though abandoned due to messy distance computations for non-central objects."
+   },
+   {
+    "label": "special_case_sanity_checks",
+    "description": "Check the derived formula against limiting/special cases (R=r, r→0, AM-GM bound) and dimensional consistency to verify plausibility of the answer."
+   },
+   {
+    "label": "known_tangent_circle_theorems",
+    "description": "Recall and state facts about collinearity of centers and tangency points and distance relations (sum/difference of radii) for tangent circles, and consider Descartes' Circle Theorem as a possible tool."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "48": {
+  "strategies": [
+   {
+    "label": "coordinate_geometry_setup",
+    "description": "Place centers P and Q on a coordinate axis, solve the circle equations simultaneously to find intersection point A, then parametrize C on the large circle and impose the midpoint-on-small-circle condition to get algebraic equations."
+   },
+   {
+    "label": "isosceles_triangle_median_perpendicular",
+    "description": "Use the fact that in isosceles triangles PAC and QAB the median to the base (through B, and through foot E) is also the perpendicular bisector, giving right triangles PBA and QEA to express AB and AE via cosines of angles at A."
+   },
+   {
+    "label": "angle_addition_law_of_cosines",
+    "description": "Define angles α=∠QAB and β=∠PAB, compute cos(∠PAQ)=cos(α+β) via the Law of Cosines in triangle APQ, then expand with the cosine addition formula to relate cosα and cosβ."
+   },
+   {
+    "label": "algebraic_elimination_via_substitution",
+    "description": "Introduce a variable (x=cosα, u=x²) to reduce the trigonometric equation to a solvable algebraic equation by squaring and simplifying."
+   },
+   {
+    "label": "bounding_via_degenerate_case",
+    "description": "Estimate the range of possible AC lengths by considering the degenerate case C=D (giving a lower bound via the kite APQD) and the diameter of the larger circle (upper bound)."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ },
+ "49": {
+  "strategies": [
+   {
+    "label": "naive_test_lcm_N",
+    "description": "Try N equal to the LCM of all the moduli (2310) as a candidate and compute the resulting remainders to see what happens."
+   },
+   {
+    "label": "naive_maximize_each_remainder_independently",
+    "description": "First attempt maximizing each step's remainder independently (1,5,29,209,2309) without regard to divisibility constraints imposed by prior steps, then show this sum (2554) is infeasible."
+   },
+   {
+    "label": "divisibility_constraint_propagation",
+    "description": "Observe that each N_k is forced to be divisible by the previous modulus, so the next remainder must be the largest value below the naive maximum that is also a multiple of that divisor (e.g. largest multiple of 6 below 30, etc.), adjusting the congruences step by step."
+   },
+   {
+    "label": "system_of_congruences_formulation",
+    "description": "Translate the adjusted remainder conditions into a system of congruences on N and its intermediate remainders (N, N_2, N_3, ...) and note CRT does not directly apply since moduli aren't coprime."
+   },
+   {
+    "label": "guess_and_verify_candidate",
+    "description": "Sum the corrected maximal remainders to propose N=2309 as the answer, then explicitly simulate the whole process on N=2309 to verify every step's remainder matches."
+   },
+   {
+    "label": "parametrize_general_solution",
+    "description": "Express the general solution as N = 2310k - 1 (i.e., N ≡ -1 mod each modulus) and show the total remainder sum is invariant 2309 for all k, then pick the smallest such N."
+   }
+  ],
+  "neutral": "restating the problem, routine arithmetic/algebra that continues the current line, checking/verifying an answer, stating the final answer",
+  "model": "claude-sonnet-5"
+ }
+}

@@ -44,7 +44,7 @@ def example_trajectory(df, steps, X):
         d = 1 - np.diag(cosine_similarity(Xs), k=1)
         x = np.linspace(0, 1, len(d))
         is_model = row["source"] == "model"
-        label = {"human": "Human (4 solutions)", "model": "Model (QwQ-32B-Preview)"}[row["source"]]
+        label = {"human": "Human (stage 1)", "model": "Model (QwQ-32B-Preview)"}[row["source"]]
         ax.plot(x, d, color=COLORS[row["source"]], linewidth=2.5 if is_model else 1.5,
                 alpha=1 if is_model else 0.6, label=None if label in labelled else label)
         labelled.add(label)

@@ -3,8 +3,10 @@ Repo for E26 NLP exam
 
 ## Exploration vs. exploitation in written mathematical reasoning
 
-Compares 200 human-written and 50 model-written (QwQ-32B-Preview) solutions to 50 competition math problems from
+Compares 50 human-written and 50 model-written (QwQ-32B-Preview) solutions to 50 competition math problems from
 [Nemotron-Math-HumanReasoning](https://huggingface.co/datasets/nvidia/Nemotron-Math-HumanReasoning) (CC BY-NC 4.0).
+The dataset has four human "stages" per problem, but they are successive edits of one write-up (~90–97% text overlap,
+later stages add templated headers), so only `human_stage1`, the rawest version, is used.
 
 **Research question:** do human solutions show more *exploration* (trying and switching ideas) than model solutions,
 or more *exploitation* (refining one line of attack)?

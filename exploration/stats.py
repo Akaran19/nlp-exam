@@ -5,7 +5,7 @@ METRICS = ["explore_share", "step_distance", "novelty"]
 
 
 def paired_comparison(df: pd.DataFrame) -> pd.DataFrame:
-    """Per problem: mean of the 4 human solutions vs. the model solution (Wilcoxon signed-rank)."""
+    """Per problem: the human (stage 1) solution vs. the model solution (Wilcoxon signed-rank)."""
     paired = df.groupby(["problem_id", "source"])[METRICS + ["n_words"]].mean().unstack("source")
     results = []
     for m in METRICS + ["n_words"]:
