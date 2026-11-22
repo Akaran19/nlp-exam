@@ -115,24 +115,24 @@ C, P = "plain", "push"
 CARDS = [
     ("What is a step?",
      [("Choice: ", "Line breaks; equations and short lines are glued on.", C),
-      ("Push back: ", "QwQ gets ~2× more, shorter steps. Use sentences instead?", P)]),
+      ("Issue: ", "QwQ gets ~2× more, shorter steps. Use sentences instead?", P)]),
     ("Distance or Vendi?",
      [("A: ", "cosine distance between a step and the previous one (a local jump).", C),
       ("B: ", "Vendi gain: how much a step adds to the diversity of all steps so far.", C),
-      ("Push back: ", "Which one captures exploring better?", P)]),
+      ("Issue: ", "Which one captures exploring better?", P)]),
     ("What about loops?",
      [("Choice: ", "A far jump back to an earlier step counts as a loop, not as new exploration.", C),
-      ("Push back: ", "Is going back exploring, exploiting, or its own category?", P)]),
+      ("Issue: ", "Is going back exploring, exploiting, or its own category?", P)]),
     ("Miracle steps?",
      [("Choice: ", "A big jump in the last 20% of a solution is a candidate.", C),
-      ("Push back: ", "Most candidates are checks (“which matches”). Add a correctness check?", P)]),
+      ("Issue: ", "Most candidates are checks (“which matches”). Add a correctness check?", P)]),
     ("Strategy labels?",
      [("Instead of explore/exploit: ", "an LLM names 3–6 strategies per problem (e.g. “substitute x = 0”, "
        "“parity argument”) and labels every step; a switch is a change of label.", C),
-      ("Push back: ", "Is this a viable replacement?", P)]),
+      ("Issue: ", "Is this a viable replacement?", P)]),
     ("Fair comparison?",
      [("Choice: ", "Human stage-1 write-ups vs. QwQ’s raw trace, paired by problem (n = 50).", C),
-      ("Push back: ", "Humans wrote after solving. Are their dead ends missing?", P)]),
+      ("Issue: ", "Humans wrote after solving. Are their dead ends missing?", P)]),
 ]
 GAP = int(1.2 * CM)
 NCOL = 3
