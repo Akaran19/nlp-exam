@@ -1,3 +1,4 @@
 raw.jsonl
 cache/
 *.log
+step_embeddings.npy
