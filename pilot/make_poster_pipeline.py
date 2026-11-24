@@ -14,9 +14,9 @@ PID = 1  # example problem for steps 3-4 (typical step counts; its human solutio
 W, H = 72.7 / 2.54, 18.6 / 2.54
 HUMAN_BAND, LLM_BAND = "#FFF4E3", "#EEF0FB"
 HUMAN_C, LLM_C, INK, MUTED = "#B86E0A", "#3F51B5", "#262626", "#5A5A5A"
-KIND_C = {"exploit": "#9AA5B1", "explore": "#E8590C", "return": "#7B2CBF", "start": "#9AA5B1"}
+KIND_C = {"exploit": "#9AA5B1", "explore": "#2A9D5C", "return": "#D6337F", "start": "#9AA5B1"}
 NAVY, ORANGE, PURPLE = "#002546", "#F68B1F", "#662D91"  # poster colours
-PATH_C = ["#4A90D9", "#F6A04D", "#8E5BB8", "#5DB37E", "#E06C75", "#2BB3A3", "#C9A227", "#7F8FA6"]  # one colour per path
+PATH_C = ["#A6C8E0", "#E6D3A3", "#CFC6E8", "#C9CED6", "#BFD9EE", "#D8CBB0", "#B9C2DE", "#E3E0D6"]  # soft blues, sands, lavenders, greys: one colour per path
 
 sm = pd.read_csv(HERE / "ee_step_metrics.csv")
 E = np.load(HERE / "step_embeddings.npy")  # same row order as ee_steps.csv / ee_step_metrics.csv
